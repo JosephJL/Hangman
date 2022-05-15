@@ -1,25 +1,246 @@
-import logo from './logo.svg';
 import './App.css';
+import { Component } from 'react';
+import { Game } from './components/hangMan/hangmanGame';
+import {word_list} from './components/hangMan/hangmanWords';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// const word_list = [
+//   'abruptly', 
+//   'absurd', 
+//   'abyss', 
+//   'affix', 
+//   'askew', 
+//   'avenue', 
+//   'awkward', 
+//   'axiom', 
+//   'azure', 
+//   'bagpipes', 
+//   'bandwagon', 
+//   'banjo', 
+//   'bayou', 
+//   'beekeeper', 
+//   'bikini', 
+//   'blitz', 
+//   'blizzard', 
+//   'boggle', 
+//   'bookworm', 
+//   'boxcar', 
+//   'boxful', 
+//   'buckaroo', 
+//   'buffalo', 
+//   'buffoon', 
+//   'buxom', 
+//   'buzzard', 
+//   'buzzing', 
+//   'buzzwords', 
+//   'caliph', 
+//   'cobweb', 
+//   'cockiness', 
+//   'croquet', 
+//   'crypt', 
+//   'curacao', 
+//   'cycle', 
+//   'daiquiri', 
+//   'dirndl', 
+//   'disavow', 
+//   'dizzying', 
+//   'duplex', 
+//   'dwarves', 
+//   'embezzle', 
+//   'equip', 
+//   'espionage', 
+//   'euouae', 
+//   'exodus', 
+//   'faking', 
+//   'fishhook', 
+//   'fixable', 
+//   'fjord', 
+//   'flapjack', 
+//   'flopping', 
+//   'fluffiness', 
+//   'flyby', 
+//   'foxglove', 
+//   'frazzled', 
+//   'frizzled', 
+//   'fuchsia', 
+//   'funny', 
+//   'gabby', 
+//   'galaxy', 
+//   'galvanize', 
+//   'gazebo', 
+//   'giaour', 
+//   'gizmo', 
+//   'glowworm', 
+//   'glyph', 
+//   'gnarly', 
+//   'gnostic', 
+//   'gossip', 
+//   'grogginess', 
+//   'haiku', 
+//   'haphazard', 
+//   'hyphen', 
+//   'iatrogenic', 
+//   'icebox', 
+//   'injury', 
+//   'ivory', 
+//   'ivy', 
+//   'jackpot', 
+//   'jaundice', 
+//   'jawbreaker', 
+//   'jaywalk', 
+//   'jazziest', 
+//   'jazzy', 
+//   'jelly', 
+//   'jigsaw', 
+//   'jinx', 
+//   'jiujitsu', 
+//   'jockey', 
+//   'jogging', 
+//   'joking', 
+//   'jovial', 
+//   'joyful', 
+//   'juicy', 
+//   'jukebox', 
+//   'jumbo', 
+//   'kayak', 
+//   'kazoo', 
+//   'keyhole', 
+//   'khaki', 
+//   'kilobyte', 
+//   'kiosk', 
+//   'kitsch', 
+//   'kiwifruit', 
+//   'klutz', 
+//   'knapsack', 
+//   'larynx', 
+//   'lengths', 
+//   'lucky', 
+//   'luxury', 
+//   'lymph', 
+//   'marquis', 
+//   'matrix', 
+//   'megahertz', 
+//   'microwave', 
+//   'mnemonic', 
+//   'mystify', 
+//   'naphtha', 
+//   'nightclub', 
+//   'nowadays', 
+//   'numbskull', 
+//   'nymph', 
+//   'onyx', 
+//   'ovary', 
+//   'oxidize', 
+//   'oxygen', 
+//   'pajama', 
+//   'peekaboo', 
+//   'phlegm', 
+//   'pixel', 
+//   'pizazz', 
+//   'pneumonia', 
+//   'polka', 
+//   'pshaw', 
+//   'psyche', 
+//   'puppy', 
+//   'puzzling', 
+//   'quartz', 
+//   'queue', 
+//   'quips', 
+//   'quixotic', 
+//   'quiz', 
+//   'quizzes', 
+//   'quorum', 
+//   'razzmatazz', 
+//   'rhubarb', 
+//   'rhythm', 
+//   'rickshaw', 
+//   'schnapps', 
+//   'scratch', 
+//   'shiv', 
+//   'snazzy', 
+//   'sphinx', 
+//   'spritz', 
+//   'squawk', 
+//   'staff', 
+//   'strength', 
+//   'strengths', 
+//   'stretch', 
+//   'stronghold', 
+//   'stymied', 
+//   'subway', 
+//   'swivel', 
+//   'syndrome', 
+//   'thriftless', 
+//   'thumbscrew', 
+//   'topaz', 
+//   'transcript', 
+//   'transgress', 
+//   'transplant', 
+//   'triphthong', 
+//   'twelfth', 
+//   'twelfths', 
+//   'unknown', 
+//   'unworthy', 
+//   'unzip', 
+//   'uptown', 
+//   'vaporize', 
+//   'vixen', 
+//   'vodka', 
+//   'voodoo', 
+//   'vortex', 
+//   'voyeurism', 
+//   'walkway', 
+//   'waltz', 
+//   'wave', 
+//   'wavy', 
+//   'waxy', 
+//   'wellspring', 
+//   'wheezy', 
+//   'whiskey', 
+//   'whizzing', 
+//   'whomever', 
+//   'wimpy', 
+//   'witchcraft', 
+//   'wizard', 
+//   'woozy', 
+//   'wristwatch', 
+//   'wyvern', 
+//   'xylophone', 
+//   'yachtsman', 
+//   'yippee', 
+//   'yoked', 
+//   'youthful', 
+//   'yummy', 
+//   'zephyr', 
+//   'zigzag', 
+//   'zigzagging', 
+//   'zilch', 
+//   'zipper', 
+//   'zodiac', 
+//   'zombie', 
+// ];
+
+function generateRandom(){
+  var index = Math.floor(Math.random() * word_list.length);
+  return word_list[index];
+}
+
+class App extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      wordList : word_list
+    }
+  }
+
+  render(){
+    return(
+      <main className="container">
+        <Game word={generateRandom()} />
+      </main>
+    )
+  }
+
+
 }
 
 export default App;
