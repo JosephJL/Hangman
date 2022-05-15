@@ -47,6 +47,16 @@ button {
   text-align: center;
 }
 
+.wrong{
+  color:red;
+  border-color: red;
+}
+
+.correct{
+  color: green;
+  border-color: green;
+}
+
 input {
   position: relative;
   margin: 0 auto;

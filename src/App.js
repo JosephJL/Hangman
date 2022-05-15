@@ -224,6 +224,7 @@ function generateRandom(){
   return word_list[index];
 }
 
+
 class App extends Component{
   constructor(props){
     super(props);
