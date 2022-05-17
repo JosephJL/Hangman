@@ -13,7 +13,8 @@ class Game extends Component{
             currLevel : 1,
             status : 6,
             guessedCorrect : "",
-            guessedWrong : ""
+            guessedWrong : "",
+            guess: ""
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleGuess = this.handleGuess.bind(this);
@@ -80,16 +81,17 @@ class Game extends Component{
     handleGuess(e,value){
         e.preventDefault();
         console.log('value is',value)
-        if (this.state.currWord === this.state.guessedCorrect + value){
-            alert("You got it right!");
-            window.location.reload(false);
-        }
-        if (this.state.status === 1){
-            alert("Bob is dead");
-            window.location.reload(false);
-        }
         if (this.state.currWord.includes(value)){
             // alert(this.state.value + " is in the word!")
+            //update guess
+            for (let i = 0; i < this.state.currWord.length; i++) {
+                if (this.state.currWord.charAt(i) == value) {
+                    var chars = this.state.guess.split('');
+                    chars[i] = value;
+                    this.state.guess = chars.join('');
+                }
+            }
+
             this.setState({guessedCorrect : this.state.guessedCorrect + value})
             console.log(this.state.guessedCorrect)
         }
@@ -103,6 +105,15 @@ class Game extends Component{
                 }
             )
             console.log(this.state.guessedWrong)
+        }
+
+        if (this.state.currWord === this.state.guess){
+            alert("You got it right!");
+            window.location.reload(false);
+        }
+        else if (this.state.status === 1){
+            alert("Bob is dead");
+            window.location.reload(false);
         }
     }
 
