@@ -119,17 +119,16 @@ class Game extends Component{
 
     render(){
         return (
-            <div className='GameBox'>
-                <div className='Box1'>
+            <div className='container'>
+                <div className='box1'>
                     <h1>Save Bob</h1>
-                    
-                </div>
-                <div className='Box2'>
                     {this.renderLevel(this.state.currLevel)} 
-                    <h3> You have {this.state.status} tries left </h3>
-                    {this.state.currWord.split("").map(this.renderWord)}
                 </div>
-                <div className='Box2'>
+                <div className='box2'>
+                    <h2> You have {this.state.status} tries left </h2>
+                    <p>{this.state.currWord.split("").map(this.renderWord)}</p>
+                </div>
+                <div className='box3'>
                 <h2>Guess a letter</h2>
                     {letters.map(this.renderButton)}   
                 </div>  
