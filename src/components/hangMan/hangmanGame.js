@@ -12,7 +12,6 @@ class Game extends Component{
             currWord : props.word,
             currLevel : 1,
             status : 6,
-            guessedCorrect : "",
             guessedWrong : "",
             guess: ""
         }
@@ -20,18 +19,16 @@ class Game extends Component{
         this.handleGuess = this.handleGuess.bind(this);
         this.increaseLevel = this.increaseLevel.bind(this);
         this.renderButton = this.renderButton.bind(this);
-        this.renderWord = this.renderWord.bind(this);
-    }
 
-    // renderButtons(){
-    //     return letters.map((item) => (
-    //         <button onClick={(e) => this.handleGuess(e,item)}>{item}</button>
-    //     ));
-    // }
+        // initialize guess with _
+        for (let i = 0; i < this.state.currWord.length; i++) {
+            this.state.guess += "_";
+        }
+    }
 
     renderButton(letter){
             
-        if (this.state.guessedCorrect.includes(letter)) {
+        if (this.state.guess.includes(letter)) {
             return (<button className='correct' disabled onClick={(e) => this.handleGuess(e,letter)}>
                 {letter}
                 </button>);
@@ -47,23 +44,9 @@ class Game extends Component{
         
     }
 
-    // renderLevel(){
-    //     const keys = Object.keys(stages)
-    //     return keys.map((number) => 
-    //         (stages[number].map((row) =>
-    //             <p>{row}</p>))
-    //     );
-    // }
     renderLevel(level){
         return stages[level].map((row) =>
                 <p>{row}</p>);
-    }
-
-    renderWord(letter){
-        if (this.state.guessedCorrect.includes(letter)) {
-            return letter;
-            }
-        return ' _ ';
     }
 
     increaseLevel(e){
@@ -82,8 +65,8 @@ class Game extends Component{
         e.preventDefault();
         console.log('value is',value)
         if (this.state.currWord.includes(value)){
-            // alert(this.state.value + " is in the word!")
-            //update guess
+
+            //update guess var
             for (let i = 0; i < this.state.currWord.length; i++) {
                 if (this.state.currWord.charAt(i) == value) {
                     var chars = this.state.guess.split('');
@@ -93,7 +76,7 @@ class Game extends Component{
             }
 
             this.setState({guessedCorrect : this.state.guessedCorrect + value})
-            console.log(this.state.guessedCorrect)
+            // console.log(this.state.guessedCorrect)
         }
         else{
             // alert(this.state.value + " is not in the word!")
@@ -126,7 +109,9 @@ class Game extends Component{
                 </div>
                 <div className='box2'>
                     <h2> You have {this.state.status} tries left </h2>
-                    <p>{this.state.currWord.split("").map(this.renderWord)}</p>
+                    <p> {
+                        this.state.guess.split('').join(' ')
+                    } </p>
                 </div>
                 <div className='box3'>
                 <h2>Guess a letter</h2>
