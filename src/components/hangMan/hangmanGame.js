@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {stages} from "./hangmanStages";
+import { word_list } from './hangmanWords';
 
 const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
