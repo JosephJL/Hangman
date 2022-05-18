@@ -2,6 +2,9 @@ import './App.css';
 import { Component } from 'react';
 import { Game } from './components/hangMan/hangmanGame';
 import {word_list} from './components/hangMan/hangmanWords';
+import { StartPage } from './components/startPage/startPage';
+import {Routes,
+Route} from 'react-router-dom'
 
 function generateRandom(){
   var index = Math.floor(Math.random() * word_list.length);
@@ -20,7 +23,10 @@ class App extends Component{
   render(){
     return(
       <main>
-        <Game word={generateRandom()} />
+        <Routes>
+          {/* <Route path='/Game' element={<Game word={generateRandom()} />} /> */}
+          <Route path='/' element={<StartPage/>} />
+        </Routes>      
       </main>
     )
   }
