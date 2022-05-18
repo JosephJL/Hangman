@@ -20,7 +20,7 @@ function StartPage () {
 
     if (start) {
         return (
-            <Game word={word} />
+            <Game word={word.toLowerCase()} />
         );
     } else{
         return (
