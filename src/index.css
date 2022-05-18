@@ -21,9 +21,16 @@ code {
     monospace;
 }
 
-.container{
+.startPage{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gamePage{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: 1em;
 
   @media (max-width: 400px) {
@@ -47,18 +54,126 @@ code {
   padding: 1em;
   grid-column: 2;
   grid-row: 1;
-
-  @media (max-width: 400px) {
-    grid-row: 2;
-  }
 }
 
 .box3 {
-  padding: 1em;
+  padding-left: 15em;
+  padding-right: 15em;
   grid-column: 2;
   grid-row: 2;
 }
 
+button {
+  color:white;
+  background:black;
+  border-color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 49px;
+}
+
+@media (max-width: 1400px) {
+  .gamePage{
+    margin-left:10em;
+    margin-right: 10em;
+  }
+  .box1{
+    
+  }
+  .box2{
+    
+  }
+  .box3{
+    padding-left: 10em;
+    padding-right: 10em;
+  }
+}
+
+img{
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+
+  
+}
+
+button {
+  color:white;
+  background:black;
+  border-color: white;
+  border-radius: 6rem;
+  text-align: center;
+  font-size: 36px;
+}
+
+@media (max-width: 1025px  ) {
+  .gamePage{
+    
+  }
+  .box1{
+    
+  }
+  .box2{
+    
+  }
+  .box3{
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  button {
+    color:white;
+    background:black;
+    border-color: white;
+    border-radius: 6rem;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  img{
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .gamePage{
+    margin: 0;
+    grid-template-columns: 3fr;
+  }
+  .box1{
+    grid-column: 1/2;
+    grid-row: 1;
+  }
+  .box2{
+    grid-row: 2;
+    grid-column: 1/2;
+  }
+  .box3{
+    grid-row: 3;
+    grid-column: 1/2;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  img{
+    display: block;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  button {
+    color:white;
+    background:black;
+    border-color: white;
+    border-radius: 6rem;
+    text-align: center;
+  }
+}
 
 h1 {
   text-align:center;
@@ -69,14 +184,6 @@ h2 {
 }
 
 p {
-  text-align: center;
-}
-
-button {
-  color:white;
-  background:black;
-  border-color: white;
-  border-radius: 6rem;
   text-align: center;
 }
 

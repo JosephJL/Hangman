@@ -24,7 +24,7 @@ function StartPage () {
         );
     } else{
         return (
-            <div>
+            <div className='startPage'>
                 <h1>Player One set your word</h1>
                 <form onSubmit={submit}>
                     <input placeholder='Type word here' value={word} onChange={(e) => setWord(e.target.value)} />

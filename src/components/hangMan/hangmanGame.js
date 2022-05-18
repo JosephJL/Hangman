@@ -51,8 +51,7 @@ class Game extends Component{
     }
 
     renderLevel(level){
-        return stages[level].map((row) =>
-                <p>{row}</p>);
+        return <img src={stages[level]}/>
     }
 
     renderResult(result){
