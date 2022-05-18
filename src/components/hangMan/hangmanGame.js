@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { useNavigate, Route} from 'react-router-dom';
 import {stages} from "./hangmanStages";
 import { word_list } from './hangmanWords';
 
@@ -14,17 +15,21 @@ class Game extends Component{
             currLevel : 1,
             status : 6,
             guessedWrong : "",
-            guess: ""
+            guess: "",
+            end:'',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleGuess = this.handleGuess.bind(this);
         this.increaseLevel = this.increaseLevel.bind(this);
         this.renderButton = this.renderButton.bind(this);
-
         // initialize guess with _
         for (let i = 0; i < this.state.currWord.length; i++) {
             this.state.guess += "_";
         }
+    }
+
+    refreshPage(){
+        window.location.reload(false)
     }
 
     renderButton(letter){
@@ -47,6 +52,18 @@ class Game extends Component{
 
     renderLevel(level){
         return <img src={stages[level]}/>
+    }
+
+    renderResult(result){
+        if(result === 'win'){
+            return(
+                <h2>You win!</h2>
+            )
+        }else{
+            return(
+                <h2>You Lose!</h2>
+            )
+        }
     }
 
     increaseLevel(e){
@@ -91,34 +108,59 @@ class Game extends Component{
         }
 
         if (this.state.currWord === this.state.guess){
-            alert("You got it right!");
-            window.location.reload(false);
+            this.setState({
+                end:'win',
+            })
         }
         else if (this.state.status === 1){
-            alert("Bob is dead");
-            window.location.reload(false);
+            this.setState({
+                end:'lose',
+            })
         }
     }
 
     render(){
-        return (
-            <div className='gamePage'>
-                <div className='box1'>
-                    <h1>Save Bob</h1>
-                    {this.renderLevel(this.state.currLevel)} 
+        if (this.state.end === ''){
+            return (
+                <div className='container'>
+                    <div className='box1'>
+                        <h1>Save Bob</h1>
+                        {this.renderLevel(this.state.currLevel)} 
+                    </div>
+                    <div className='box2'>
+                        <h2> You have {this.state.status} tries left </h2>
+                        <p> {
+                            this.state.guess.split('').join(' ')
+                        } </p>
+                    </div>
+                    <div className='box3'>
+                    <h2>Guess a letter</h2>
+                        {letters.map(this.renderButton)}   
+                    </div>  
                 </div>
-                <div className='box2'>
-                    <h2> You have {this.state.status} tries left </h2>
-                    <p> {
-                        this.state.guess.split('').join(' ')
-                    } </p>
+            );
+        }
+        else {
+            return (
+                <div className='container'>
+                    <div className='box1'>
+                        <h1>Save Bob</h1>
+                        {this.renderLevel(this.state.currLevel)} 
+                    </div>
+                    <div className='box2'>
+                        {this.renderResult(this.state.end)}
+                        <p> {
+                            this.state.guess.split('').join(' ')
+                        } </p>
+                        <button onClick={() => this.refreshPage()}>Play Again</button>
+                    </div>
+                    <div className='box3'>
+                    <h2>Guess a letter</h2>
+                        {letters.map(this.renderButton)}   
+                    </div>  
                 </div>
-                <div className='box3'>
-                <h2>Guess a letter</h2>
-                    {letters.map(this.renderButton)}   
-                </div>  
-            </div>
-        );
+            );
+        }
     }
 }
 
