@@ -46,8 +46,7 @@ class Game extends Component{
     }
 
     renderLevel(level){
-        return stages[level].map((row) =>
-                <p>{row}</p>);
+        return <img src={stages[level]}/>
     }
 
     increaseLevel(e){
@@ -103,7 +102,7 @@ class Game extends Component{
 
     render(){
         return (
-            <div className='container'>
+            <div className='gamePage'>
                 <div className='box1'>
                     <h1>Save Bob</h1>
                     {this.renderLevel(this.state.currLevel)} 
