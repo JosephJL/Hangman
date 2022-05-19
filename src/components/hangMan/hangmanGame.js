@@ -122,9 +122,8 @@ class Game extends Component{
     render(){
         if (this.state.end === ''){
             return (
-                <div className='container'>
+                <div className='gamePage'>
                     <div className='box1'>
-                        <h1>Save Bob</h1>
                         {this.renderLevel(this.state.currLevel)} 
                     </div>
                     <div className='box2'>
@@ -142,9 +141,8 @@ class Game extends Component{
         }
         else {
             return (
-                <div className='container'>
+                <div className='gamePage'>
                     <div className='box1'>
-                        <h1>Save Bob</h1>
                         {this.renderLevel(this.state.currLevel)} 
                     </div>
                     <div className='box2'>
@@ -152,7 +150,7 @@ class Game extends Component{
                         <p> {
                             this.state.guess.split('').join(' ')
                         } </p>
-                        <button onClick={() => this.refreshPage()}>Play Again</button>
+                        <button className='playAgain' onClick={() => this.refreshPage()}>Play Again</button>
                     </div>
                     <div className='box3'>
                     <h2>Guess a letter</h2>

@@ -22,7 +22,7 @@ class App extends Component{
 
   render(){
     return(
-      <main>
+      <main className='container'>
         <Routes>
           {/* <Route path='/Game' element={<Game word={generateRandom()} />} /> */}
           <Route path='/' element={<StartPage/>} />
