@@ -1,0 +1,39 @@
+import { useState } from 'react'
+import {
+    Link
+} from 'react-router-dom'
+import { Game } from '../hangMan/hangmanGame'
+
+function StartPage () {
+    const [start,setStart] = useState(false);
+    const [word,setWord] = useState('');
+
+    const submit = (e) => {
+        e.preventDefault();
+        if (word.length === 0){
+            setStart(false);
+            alert('You left it blank!')
+        } else{
+            setStart(true);
+        }
+    }
+
+    if (start) {
+        return (
+            <Game word={word.toLowerCase()} />
+        );
+    } else{
+        return (
+            <div className='startPage'>
+                <h1>Player set your word</h1>
+                <form className='startForm' onSubmit={submit}>
+                    <input placeholder='Type word here' value={word} onChange={(e) => setWord(e.target.value)} /><br/>
+                    <button className='startButton' type='submit'>Lets Play!</button>
+                </form>
+            </div>
+        )
+    }
+
+}
+
+export {StartPage}
