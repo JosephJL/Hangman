@@ -27,7 +27,7 @@ function StartPage () {
             <div className='startPage'>
                 <h1>Player set your word</h1>
                 <form className='startForm' onSubmit={submit}>
-                    <input placeholder='Type word here' value={word} onChange={(e) => setWord(e.target.value)} /><br/>
+                    <input placeholder='Type word here' value={word} onChange={(e) => setWord(e.target.value)} />
                     <button className='startButton' type='submit'>Lets Play!</button>
                 </form>
             </div>
