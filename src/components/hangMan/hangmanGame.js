@@ -1,22 +1,31 @@
 import React, {Component} from 'react';
 import { useNavigate, Route} from 'react-router-dom';
-import {stages} from "./hangmanStages";
-import { word_list } from './hangmanWords';
+import Popup from './popup';
+import image0 from '../images/0.png';
+import image1 from '../images/1.png';
+import image2 from '../images/2.png';
+import image3 from '../images/3.png';
+import image4 from '../images/4.png';
+import image5 from '../images/5.png';
+import image6 from '../images/6.png';
 
 const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
 class Game extends Component{
+
+    static defaultProps = {
+        images: [image0,image1,image2,image3,image4,image5,image6]
+    }
 
     constructor(props){
         super(props);
         
         this.state = {
             currWord : props.word,
-            currLevel : 1,
+            currLevel : 0,
             status : 6,
             guessedWrong : "",
             guess: "",
-            end:'',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleGuess = this.handleGuess.bind(this);
@@ -50,22 +59,6 @@ class Game extends Component{
         
     }
 
-    renderLevel(level){
-        return <img src={stages[level]}/>
-    }
-
-    renderResult(result){
-        if(result === 'win'){
-            return(
-                <h2>You win!</h2>
-            )
-        }else{
-            return(
-                <h2>You Lose!</h2>
-            )
-        }
-    }
-
     increaseLevel(e){
         return this.setState({
             currWord: this.state.currWord,
@@ -81,6 +74,7 @@ class Game extends Component{
     handleGuess(e,value){
         e.preventDefault();
         console.log('value is',value)
+        console.log('currGuess is',this.state.guess)
         if (this.state.currWord.includes(value)){
 
             //update guess var
@@ -120,14 +114,15 @@ class Game extends Component{
     }
 
     render(){
-        if (this.state.end === ''){
+        if (this.state.guess != this.state.currWord && this.state.status > 0){
             return (
                 <div className='gamePage'>
                     <div className='box1'>
-                        {this.renderLevel(this.state.currLevel)} 
+                    <h1>SAVE HALLOWEEN</h1>
+                        <img src={this.props.images[this.state.currLevel]}/> 
                     </div>
                     <div className='box2'>
-                        <h2> You have {this.state.status} tries left </h2>
+                        <h2> You have {this.state.status} lives left </h2>
                         <p> {
                             this.state.guess.split('').join(' ')
                         } </p>
@@ -143,18 +138,26 @@ class Game extends Component{
             return (
                 <div className='gamePage'>
                     <div className='box1'>
-                        {this.renderLevel(this.state.currLevel)} 
+                        <h1>SAVE HALLOWEEN</h1>
+                        <img src={this.props.images[this.state.currLevel]}/> 
                     </div>
                     <div className='box2'>
-                        {this.renderResult(this.state.end)}
                         <p> {
                             this.state.guess.split('').join(' ')
                         } </p>
-                        <button className='playAgain' onClick={() => this.refreshPage()}>Play Again</button>
                     </div>
                     <div className='box3'>
                     <h2>Guess a letter</h2>
                         {letters.map(this.renderButton)}   
+                    </div>
+                    <div>
+                        <Popup trigger={this.state.guess == this.state.currWord}>
+                            <h1 className='congrats'>"Congrats! You managed to save halloween"</h1>
+                        </Popup>
+                        <Popup trigger={this.state.guess != this.state.currWord}>
+                            <h2>The word is <h2 className='currword'>"{this.state.currWord}"</h2></h2>
+                            <h1 className='gameover'>~You lost Halloween! Better luck next time!~</h1>
+                        </Popup>
                     </div>  
                 </div>
             );

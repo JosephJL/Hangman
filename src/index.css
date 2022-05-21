@@ -11,9 +11,17 @@
 } */
 
 body{
+  background-image: url(./components/images/bg.jpg);
+  background-position: center;
+  /* -webkit-background-size:100%;
+  -moz-background-size:100%;
+  -o-background-size:100%; */
+  background-repeat: no-repeat;
+  background-size: auto 100vh;
   background-color: black;
   color: white;
   display: unset;
+  font-family: Creepster, cursive;
 }
 
 code {
@@ -29,11 +37,19 @@ code {
   align-items: center;
 }
 
+.startForm{
+  display: flex;
+  justify-content: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .gamePage{
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 1em;
-  margin: 10em;
+  margin-left: 10em;
+  margin-right: 10em;
 }
 
 .box1 {
@@ -53,8 +69,8 @@ code {
   border-color: white;
   grid-column: 2;
   grid-row: 2;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 5em;
+  padding-right: 5em;
   padding-bottom: 1em;
 }
 
@@ -63,15 +79,23 @@ input{
   background: black;
   color: grey;
   font-size: 25px;
+  font-family: Creepster, cursive;
+  border-radius: 7em;
+  text-align: center;
 }
 
 button {
-  border: none;
+  border-color: rgb(227, 219, 219);
   color:white;
   background:black;
-  border-radius: 30%;
+  border-radius: 7em;
   text-align: center;
-  font-size: 49px;
+  font-size: 40px;
+  font-family: Creepster, cursive;
+}
+
+.startButton{
+  margin-left: 1em;
 }
 
 .playAgain {
@@ -118,6 +142,13 @@ img{
 @media (max-width: 1400px) {
   .startPage{
     margin-top: 20em;
+  }
+
+  .startForm{
+    display: flex;
+    justify-content: center;
+    padding-left: 1em;
+    padding-right: 1em;
   }
 
   .gamePage{
@@ -174,6 +205,14 @@ img{
   .startPage{
     margin-top: 20em;
   }
+
+  .startForm{
+    display: flex;
+    justify-content: center;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
   .gamePage{
     margin-top: 1em;
     margin-left: 5em;
@@ -222,7 +261,6 @@ img{
   }
 }
 
-
 @media (max-width: 600px) {
 
   .startPage{
@@ -231,6 +269,7 @@ img{
 
   .startForm{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding-left: 1em;
     padding-right: 1em;
@@ -270,6 +309,11 @@ img{
     border-radius: 6rem;
     text-align: center;
     font-size: 12px;
+    margin-left: 0;
+  }
+
+  .startButton{
+    margin-top: 1em;
   }
 
   h1 {
