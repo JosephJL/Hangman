@@ -30,7 +30,7 @@ class Game extends Component{
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleGuess = this.handleGuess.bind(this);
-        this.increaseLevel = this.increaseLevel.bind(this);
+        // this.increaseLevel = this.increaseLevel.bind(this);
         this.renderButton = this.renderButton.bind(this);
         this.onTrigger = this.onTrigger.bind(this);
         // initialize guess with _
@@ -69,12 +69,12 @@ class Game extends Component{
         
     }
 
-    increaseLevel(e){
-        return this.setState({
-            currWord: this.state.currWord,
-            currLevel: this.state.currLevel + 1
-        })
-    }
+    // increaseLevel(e){
+    //     return this.setState({
+    //         currWord: this.state.currWord,
+    //         currLevel: this.state.currLevel + 1
+    //     })
+    // }
 
     handleChange(e){
         this.setState({value: e.target.value 
