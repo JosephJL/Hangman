@@ -29,8 +29,12 @@ code {
     monospace;
 }
 
+.nameInput{
+  margin-bottom: 1em;
+}
+
 .startPage{
-  margin-top: 20em;
+  margin-top: 0em;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -39,6 +43,14 @@ code {
 
 .startForm{
   display: flex;
+  justify-content: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.nameForm{
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   padding-left: 1em;
   padding-right: 1em;
@@ -141,7 +153,7 @@ img{
 
 @media (max-width: 1400px) {
   .startPage{
-    margin-top: 20em;
+    margin-top: 0em;
   }
 
   .startForm{
@@ -203,7 +215,7 @@ img{
 
 @media (max-width: 1025px  ) {
   .startPage{
-    margin-top: 20em;
+    margin-top: 8em;
   }
 
   .startForm{
@@ -310,6 +322,7 @@ img{
     text-align: center;
     font-size: 12px;
     margin-left: 0;
+    background: ;
   }
 
   .startButton{

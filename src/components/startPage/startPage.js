@@ -62,11 +62,14 @@ function StartPage () {
     }
     else if (nameStatus == false) {
         return(
-            <form className='nameForm' onSubmit={updateNames}>
-                    <input placeholder='Player 1 Name' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)} />
-                    <input placeholder='Player 2 Name' value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)} />
-                    <button className='startButton' type='submit'>Lets Play!</button>
-            </form>
+            <div className='startPage'>
+                <h2>Challenge your friend</h2>
+                <form className='nameForm' onSubmit={updateNames}>
+                        <input className ='nameInput' placeholder='Player 1 Name' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)} />
+                        <input className ='nameInput' placeholder='Player 2 Name' value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)} />
+                        <button className='startButton' type='submit'>Lets Play!</button>
+                </form>
+            </div>
         )
     }
     else if (playerOneScore == 3 || playerTwoScore == 3){
