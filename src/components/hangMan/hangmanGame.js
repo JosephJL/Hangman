@@ -26,14 +26,24 @@ class Game extends Component{
             status : 6,
             guessedWrong : "",
             guess: "",
+            currSetter: props.currentSetter,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleGuess = this.handleGuess.bind(this);
         this.increaseLevel = this.increaseLevel.bind(this);
         this.renderButton = this.renderButton.bind(this);
+        this.onTrigger = this.onTrigger.bind(this);
         // initialize guess with _
         for (let i = 0; i < this.state.currWord.length; i++) {
             this.state.guess += "_";
+        }
+    }
+
+    onTrigger(status){
+        if (this.state.currWord == this.state.guess){
+            this.props.parentCallback(true);
+        }else{
+            this.props.parentCallback(false);
         }
     }
 
@@ -100,17 +110,6 @@ class Game extends Component{
             )
             console.log(this.state.guessedWrong)
         }
-
-        if (this.state.currWord === this.state.guess){
-            this.setState({
-                end:'win',
-            })
-        }
-        else if (this.state.status === 1){
-            this.setState({
-                end:'lose',
-            })
-        }
     }
 
     render(){
@@ -153,11 +152,16 @@ class Game extends Component{
                     <div>
                         <Popup trigger={this.state.guess == this.state.currWord}>
                             <h1 className='congrats'>"Congrats! You managed to save halloween"</h1>
+                            <h1>You get a point!</h1>
+                            <button className='close-btn' onClick={this.onTrigger}>Next Round</button>
                         </Popup>
                         <Popup trigger={this.state.guess != this.state.currWord}>
                             <h2>The word is <h2 className='currword'>"{this.state.currWord}"</h2></h2>
-                            <h1 className='gameover'>~You lost Halloween! Better luck next time!~</h1>
-                        </Popup>
+                            <h1 className='gameover'>~You lost Halloween!~</h1>
+                            <h1>Point goes to {this.state.currSetter}</h1>
+                            {/* <h1 className='gameover'>~You lost Halloween! Better luck next time!~</h1> */}
+                            <button className='close-btn' onClick={this.onTrigger}>Next Round</button>
+                        </Popup> 
                     </div>  
                 </div>
             );

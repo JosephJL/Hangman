@@ -6,27 +6,24 @@ import { StartPage } from './components/startPage/startPage';
 import {Routes,
 Route} from 'react-router-dom'
 
-function generateRandom(){
-  var index = Math.floor(Math.random() * word_list.length);
-  return word_list[index];
-}
+// function generateRandom(){
+//   var index = Math.floor(Math.random() * word_list.length);
+//   return word_list[index];
+// }
 
 
 class App extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      wordList : word_list
-    }
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     wordList : word_list
+  //   }
+  // }
 
   render(){
     return(
       <main className='container'>
-        <Routes>
-          {/* <Route path='/Game' element={<Game word={generateRandom()} />} /> */}
-          <Route path='/' element={<StartPage/>} />
-        </Routes>      
+          {<StartPage/>}
       </main>
     )
   }
