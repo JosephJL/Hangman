@@ -13,24 +13,26 @@ function StartPage () {
     const [nameStatus,setNameStatus] = useState(false);
     const [playerOneScore,setPlayerOneScore] = useState(0);
     const [playerTwoScore,setPlayerTwoScore] = useState(0);
-    const [currentSetter,setCurrentSetter] = useState('');
+    // const [currentSetter,setCurrentSetter] = useState('');
+    const [isPlayerOneTurn,setCurrentSetter] = useState(true);
 
     const handleCallback = (result) => {
-        if (currentSetter == playerOne){
+        if (isPlayerOneTurn){
             if (result){
                 setPlayerTwoScore(playerTwoScore + 1);
-            }else{
+            } else {
                 setPlayerOneScore(playerOneScore + 1);
             }
-            setCurrentSetter(playerTwo);
-        }else{
+            // setCurrentSetter(playerTwo);
+        } else {
             if (result){
                 setPlayerOneScore(playerOneScore + 1);
-            }else{
+            } else{
                 setPlayerTwoScore(playerTwoScore + 1);
             }
-            setCurrentSetter(playerOne);
+            // setCurrentSetter(playerOne);
         }
+        setCurrentSetter(!isPlayerOneTurn);
         setStart(false);
     }
 
@@ -49,15 +51,16 @@ function StartPage () {
         if (playerOne.length === 0 || playerTwo.length === 0){
             setNameStatus(false);
             alert("Where is your name!")
-        } else{
-            setCurrentSetter(playerOne)
+        } else {
+            // setCurrentSetter(playerOne)
             setNameStatus(true);
         }
     }
 
     if (start) {
         return (
-            <Game parentCallback ={handleCallback} currentSetter={currentSetter} word={word.toLowerCase()}/>
+            // <Game parentCallback ={handleCallback} currentSetter={currentSetter} word={word.toLowerCase()}/>
+            <Game parentCallback ={handleCallback} word={word.toLowerCase()}/>
         );
     }
     else if (nameStatus == false) {
@@ -93,7 +96,7 @@ function StartPage () {
                 <h1>Current Scoreboard</h1>
                 <h2>{playerOne} score: {playerOneScore}</h2>
                 <h2>{playerTwo} score: {playerTwoScore}</h2>
-                <h1>{currentSetter} set your word</h1>
+                <h1>{isPlayerOneTurn ? playerOne : playerTwo} set your word</h1>
                 <form className='startForm' onSubmit={submit}>
                     <input placeholder='Type word here' value={word} onChange={(e) => setWord(e.target.value)} />
                     <button className='startButton' type='submit'>Lets Play!</button>
