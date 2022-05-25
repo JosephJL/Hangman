@@ -66,11 +66,14 @@ function StartPage () {
     else if (nameStatus == false) {
         return(
             <div className='startPage'>
-                <h2>Challenge your friend</h2>
+                <h1>Challenge your friend</h1>
                 <form className='nameForm' onSubmit={updateNames}>
                         <input className ='nameInput' placeholder='Player 1 Name' value={playerOne} onChange={(e) => setPlayerOne(e.target.value)} />
                         <input className ='nameInput' placeholder='Player 2 Name' value={playerTwo} onChange={(e) => setPlayerTwo(e.target.value)} />
-                        <button className='startButton' type='submit'>Lets Play!</button>
+                        <button className='startButton' type='submit'>
+                            <span className='play_text'>Let's Play</span>
+                            <span className='play_icon'><ion-icon name="walk-outline"></ion-icon></span>
+                        </button>
                 </form>
             </div>
         )
@@ -92,14 +95,17 @@ function StartPage () {
     }
     else{
         return (
-            <div className='startPage'>
+            <div className='scorePage'>
                 <h1>Current Scoreboard</h1>
                 <h2>{playerOne} score: {playerOneScore}</h2>
                 <h2>{playerTwo} score: {playerTwoScore}</h2>
                 <h1>{isPlayerOneTurn ? playerOne : playerTwo} set your word</h1>
                 <form className='startForm' onSubmit={submit}>
                     <input placeholder='Type word here' value={word} onChange={(e) => setWord(e.target.value)} />
-                    <button className='startButton' type='submit'>Lets Play!</button>
+                    <button className='startButton' type='submit'>
+                        <span className='play_text'>Let's Play</span>
+                            <span className='play_icon'><ion-icon name="walk-outline"></ion-icon></span>
+                    </button>
                 </form>
             </div>
         )
