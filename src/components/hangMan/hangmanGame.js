@@ -9,7 +9,7 @@ import image4 from '../images/4.png';
 import image5 from '../images/5.png';
 import image6 from '../images/6.png';
 
-const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+const letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
 class Game extends Component{
 
@@ -21,7 +21,7 @@ class Game extends Component{
         super(props);
         
         this.state = {
-            currWord : props.word,
+            currWord : props.word.toUpperCase(),
             currLevel : 0,
             status : 6,
             guessedWrong : "",
@@ -54,27 +54,24 @@ class Game extends Component{
     renderButton(letter){
             
         if (this.state.guess.includes(letter)) {
-            return (<button className='correct' disabled onClick={(e) => this.handleGuess(e,letter)}>
+            return (
+                <button className='correct' disabled onClick={(e) => this.handleGuess(e,letter)}>
                 {letter}
-                </button>);
+                </button>
+                );
             }
         else if (this.state.guessedWrong.includes(letter)) {
-            return (<button className='wrong' disabled onClick={(e) => this.handleGuess(e,letter)}>
-                {letter}
-                </button>);
+            return (
+                    <button className='wrong' disabled onClick={(e) => this.handleGuess(e,letter)}>
+                    {letter}
+                    </button>
+                );
             }
-        return (<button onClick={(e) => this.handleGuess(e,letter)}>
+        return (<button className='letterbutton' onClick={(e) => this.handleGuess(e,letter)}>
         {letter}
         </button>);
         
     }
-
-    // increaseLevel(e){
-    //     return this.setState({
-    //         currWord: this.state.currWord,
-    //         currLevel: this.state.currLevel + 1
-    //     })
-    // }
 
     handleChange(e){
         this.setState({value: e.target.value 
@@ -117,17 +114,17 @@ class Game extends Component{
             return (
                 <div className='gamePage'>
                     <div className='box1'>
-                    <h1>SAVE HALLOWEEN</h1>
+                    <h1>SURVIVNG HANGMAN</h1>
                         <img src={this.props.images[this.state.currLevel]}/> 
                     </div>
                     <div className='box2'>
-                        <h2> You have {this.state.status} lives left </h2>
+                        <h2> You have <span>{this.state.status}</span> lives left </h2>
                         <p> {
                             this.state.guess.split('').join(' ')
                         } </p>
                     </div>
                     <div className='box3'>
-                    <h2>Guess a letter</h2>
+                        <h2>Guess a letter</h2>
                         {letters.map(this.renderButton)}   
                     </div>  
                 </div>
@@ -137,7 +134,7 @@ class Game extends Component{
             return (
                 <div className='gamePage'>
                     <div className='box1'>
-                        <h1>SAVE HALLOWEEN</h1>
+                        <h1>SURVIVING HANGMAN</h1>
                         <img src={this.props.images[this.state.currLevel]}/> 
                     </div>
                     <div className='box2'>
@@ -151,13 +148,13 @@ class Game extends Component{
                     </div>
                     <div>
                         <Popup trigger={this.state.guess == this.state.currWord}>
-                            <h1 className='congrats'>"Congrats! You managed to save halloween"</h1>
+                            <h1 className='congrats'>"Congrats! You survived"</h1>
                             <h1>You get a point!</h1>
                             <button className='close-btn' onClick={this.onTrigger}>Next Round</button>
                         </Popup>
                         <Popup trigger={this.state.guess != this.state.currWord}>
-                            <h2>The word is <h2 className='currword'>"{this.state.currWord}"</h2></h2>
-                            <h1 className='gameover'>~You lost Halloween!~</h1>
+                            <h2>The word is <span className='currword'>"{this.state.currWord}"</span></h2>
+                            <h1 className='gameover'>~You lost a life~</h1>
                             <h1>Point goes to {this.state.currSetter}</h1>
                             {/* <h1 className='gameover'>~You lost Halloween! Better luck next time!~</h1> */}
                             <button className='close-btn' onClick={this.onTrigger}>Next Round</button>

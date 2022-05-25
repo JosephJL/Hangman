@@ -5,38 +5,46 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.574);
-    display: flex;
+    display: inline-flex;
     justify-content: center;
-    align-items: center;
+    text-align: center;
   }
 
 
 .popup-inner {
     position: relative;
     padding: 32px;
-    width: 100%;
-    max-width:500px;
-    background-image: url(../images/bg.jpg);
+    margin: auto;
+    width: 50%;
+    background-image: url(../images/desktop.png);
     background-size: cover;
-    /* background-color: #282b38; */
+    border-radius: 3em;
     color:rgb(248, 247, 249)
 }
 
-.close-btn {
-    position: relative; 
-    transition: transform 0.3s ease; 
-    text-align: center;
-    color: #ff4320;
-    background-color: rgb(251, 246, 246);
-    border-color: black;
-    transition-duration: 0.4s;
-
+@media (max-width: 1025px  ) {
+  .popup {
+    height: auto;
+  }
+  
+.popup-inner {
+  margin: 10em;
+}
 }
 
-.close-btn:hover {
-    background-color: #ff4320;
-    color: white;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.25), 0 20px 50px 0 rgba(0,0,0,0.25);
+@media (max-width: 600px) {
+
+  .popup {
+    height: 100vh;
+  }
+
+  .popup-inner {
+    background-image: url(../images/mobile.png);
+    color: black;
+    text-shadow: 1.5px 1.5px whitesmoke;
+    margin: auto;
+  }
+  
 }
 
 
