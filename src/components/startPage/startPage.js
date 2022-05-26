@@ -32,6 +32,7 @@ function StartPage () {
             }
             // setCurrentSetter(playerOne);
         }
+        setWord("");
         setCurrentSetter(!isPlayerOneTurn);
         setStart(false);
     }
@@ -40,28 +41,46 @@ function StartPage () {
         e.preventDefault();
         if (word.length === 0){
             setStart(false);
-            alert('You left it blank!')
-        } else{
+            alert('You left it blank!');
+        }
+        else if (hasNumber(word)){
+            alert('Your word should only contain letters!');
+        }
+        else{
             setStart(true);
         }
+    }
+
+    const hasNumber = (myString) => {
+        return /\d/.test(myString);
     }
 
     const updateNames = (e) => {
         e.preventDefault();
         if (playerOne.length === 0 || playerTwo.length === 0){
             setNameStatus(false);
-            alert("Where is your name!")
-        } else {
+            alert("Where is your name!");
+        }
+        else if (playerOne === playerTwo){
+            alert("Both names cannot be the same!");
+        }
+        else {
             // setCurrentSetter(playerOne)
             setNameStatus(true);
         }
     }
 
     if (start) {
-        return (
-            // <Game parentCallback ={handleCallback} currentSetter={currentSetter} word={word.toLowerCase()}/>
-            <Game parentCallback ={handleCallback} word={word.toLowerCase()}/>
-        );
+        if (isPlayerOneTurn){
+            return (
+                <Game parentCallback ={handleCallback} word={word.toLowerCase()} currentSetter={playerOne} currentPlayer={playerTwo}/>
+            )
+        }else{
+            return (
+                // <Game parentCallback ={handleCallback} currentSetter={currentSetter} word={word.toLowerCase()}/>
+                <Game parentCallback ={handleCallback} word={word.toLowerCase()} currentSetter={playerTwo} currentPlayer={playerOne}/>
+                );
+        }
     }
     else if (nameStatus == false) {
         return(

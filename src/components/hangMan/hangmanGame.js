@@ -26,7 +26,8 @@ class Game extends Component{
             status : 6,
             guessedWrong : "",
             guess: "",
-            currSetter: props.currentSetter,
+            currentSetter: props.currentSetter,
+            currentPlayer: props.currentPlayer
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleGuess = this.handleGuess.bind(this);
@@ -148,14 +149,14 @@ class Game extends Component{
                     </div>
                     <div>
                         <Popup trigger={this.state.guess == this.state.currWord}>
-                            <h1 className='congrats'>"Congrats! You survived"</h1>
-                            <h1>You get a point!</h1>
+                            <h1 className='congrats'>"Congrats! {this.state.currentPlayer} survived"</h1>
+                            <h1>{this.state.currentPlayer} gets a point!</h1>
                             <button className='close-btn' onClick={this.onTrigger}>Next Round</button>
                         </Popup>
                         <Popup trigger={this.state.guess != this.state.currWord}>
                             <h2>The word is <span className='currword'>"{this.state.currWord}"</span></h2>
-                            <h1 className='gameover'>~You lost a life~</h1>
-                            <h1>Point goes to {this.state.currSetter}</h1>
+                            <h1 className='gameover'>~{this.state.currentPlayer} lost a life~</h1>
+                            <h1>{this.state.currentSetter} gets a point!</h1>
                             {/* <h1 className='gameover'>~You lost Halloween! Better luck next time!~</h1> */}
                             <button className='close-btn' onClick={this.onTrigger}>Next Round</button>
                         </Popup> 
